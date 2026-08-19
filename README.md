@@ -1,6 +1,10 @@
 # Digital Process Automation Platform
 
-Recruiter-facing portfolio project for a Teensy 4.1 process controller that models, controls, and logs a small-batch brewing workflow.
+Hands-on automation project for a Teensy 4.1 process controller that models, controls, and logs a small-batch brewing workflow.
+
+Read the [project overview](docs/project-overview.md) for the complete goal, current progress, and development roadmap.
+See the [modeling software evaluation](docs/modeling-software-evaluation.md) for the recommended simulation, data, and visualization tools.
+Record physical equipment, process assumptions, HMI behavior, and model requirements in the [system specifications](docs/system-specifications.md).
 
 ## What This Project Shows
 
@@ -9,7 +13,7 @@ Recruiter-facing portfolio project for a Teensy 4.1 process controller that mode
 - Control logic for heating, temperature hold, boil power, volume capture, sensor calibration, and state transitions.
 - Structured CSV logs designed for later analysis, model tuning, anomaly detection, and AI-assisted process prediction.
 
-## Portfolio Demo
+## Digital Process Demo
 
 Open the browser demo at:
 
@@ -17,7 +21,7 @@ Open the browser demo at:
 portfolio/index.html
 ```
 
-The demo is a digital twin-style resume artifact. It lets a recruiter adjust batch parameters, run a simulated brew day, inspect the state machine, and see how the physical firmware maps into measurable process data.
+The demo is an early digital twin interface. It lets a user adjust batch parameters, run a simulated brew day, inspect the state machine, and see how the physical firmware maps into measurable process data.
 
 ## Firmware Highlights
 
@@ -37,3 +41,7 @@ The firmware already captures the data needed for AI-assisted modeling:
 - Calibration metadata and event markers.
 
 Next steps are to export SD-card CSV logs, train simple forecasting models, and compare predicted stage completion times against real process outcomes.
+
+## Data And Modeling
+
+The first Python data foundation and heat-to-strike model are documented in [`modeling/README.md`](modeling/README.md). The tools parse the controller's mixed metadata, sample, and HMI event records without modifying the source run files.

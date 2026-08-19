@@ -76,4 +76,4 @@ await writeFile(
   "utf8"
 );
 
-console.log("Built recruiter portfolio site to dist/server/index.js");
+console.log("Built digital process site to dist/server/index.js");

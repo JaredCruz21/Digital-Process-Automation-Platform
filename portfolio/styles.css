@@ -162,7 +162,7 @@ nav a {
 .controls-panel h2,
 .model-surface h3,
 .content-band h2,
-.resume-band h2 {
+.capability-band h2 {
   margin-top: 0;
 }
 
@@ -360,7 +360,7 @@ button:hover {
   line-height: 1.5;
 }
 
-.resume-band {
+.capability-band {
   padding: clamp(34px, 6vw, 76px);
   background: var(--paper);
 }
