@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Digital Process Automation Platform</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Embedded controls portfolio</p>
+        <h1>Digital Process Automation Platform</h1>
+      </div>
+      <nav aria-label="Project sections">
+        <a href="#twin">Digital twin</a>
+        <a href="#model">AI model plan</a>
+        <a href="#resume">Resume signals</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Teensy 4.1 + Nextion HMI + sensor logging</p>
+          <h2>Physical brewing process, modeled as a recruiter-readable automation system.</h2>
+          <p>
+            This project turns a real controller into a digital process story: stage control,
+            sensor calibration, data logging, predictive estimates, and a browser-based model
+            that explains how the automation works without needing the hardware on a desk.
+          </p>
+        </div>
+        <div class="process-visual" aria-label="Animated process vessel model">
+          <canvas id="vesselCanvas" width="900" height="620"></canvas>
+          <div class="visual-readout">
+            <span id="readoutStage">Fill</span>
+            <strong id="readoutTemp">20.0 C</strong>
+            <span id="readoutVolume">0.0 gal</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="twin" class="workspace">
+        <aside class="controls-panel">
+          <h2>Batch Inputs</h2>
+          <label>
+            Mash target
+            <input id="mashTemp" type="range" min="62" max="70" value="67" step="0.5">
+            <span><output id="mashTempOut">67.0</output> C</span>
+          </label>
+          <label>
+            Mash duration
+            <input id="mashDuration" type="range" min="30" max="90" value="60" step="5">
+            <span><output id="mashDurationOut">60</output> min</span>
+          </label>
+          <label>
+            Boil duration
+            <input id="boilDuration" type="range" min="30" max="90" value="60" step="5">
+            <span><output id="boilDurationOut">60</output> min</span>
+          </label>
+          <label>
+            Fill volume
+            <input id="fillVolume" type="range" min="3" max="8" value="5.5" step="0.25">
+            <span><output id="fillVolumeOut">5.50</output> gal</span>
+          </label>
+          <div class="button-row">
+            <button id="runSimulation" type="button">Run Model</button>
+            <button id="pauseSimulation" type="button">Pause</button>
+            <button id="resetSimulation" type="button">Reset</button>
+          </div>
+        </aside>
+
+        <section class="model-surface" aria-label="Digital process model">
+          <div class="metrics-strip">
+            <div>
+              <span>Current stage</span>
+              <strong id="metricStage">Fill</strong>
+            </div>
+            <div>
+              <span>Predicted completion</span>
+              <strong id="metricEta">03:12</strong>
+            </div>
+            <div>
+              <span>Heater duty</span>
+              <strong id="metricDuty">0%</strong>
+            </div>
+            <div>
+              <span>Model confidence</span>
+              <strong id="metricConfidence">Warming up</strong>
+            </div>
+          </div>
+
+          <div class="chart-grid">
+            <div class="chart-area">
+              <div class="chart-heading">
+                <h3>Temperature Forecast</h3>
+                <span id="chartTempLabel">20.0 C</span>
+              </div>
+              <canvas id="tempChart" width="980" height="380"></canvas>
+            </div>
+            <div class="state-machine">
+              <h3>Firmware State Machine</h3>
+              <ol id="stateList">
+                <li data-stage="Fill">Fill volume lock</li>
+                <li data-stage="Strike">Heat to strike</li>
+                <li data-stage="Mash">Mash hold</li>
+                <li data-stage="Boil">Boil control</li>
+                <li data-stage="Cooling">Cooling ETA</li>
+                <li data-stage="Fermentation">Fermentation logging</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section id="model" class="content-band">
+        <div>
+          <p class="eyebrow">AI-ready data loop</p>
+          <h2>From controller logs to predictive process models</h2>
+          <p>
+            The embedded code writes timestamped process rows with temperature, setpoint,
+            volume, heater state, pump state, specific gravity, calibration metadata, and event
+            labels. That turns each batch into training data for forecasting heat-up time,
+            cooling time, volume loss, and fermentation stability.
+          </p>
+        </div>
+        <div class="pipeline">
+          <div><span>1</span><strong>Sense</strong><p>RTD temperature, hydrostatic level, HMI inputs.</p></div>
+          <div><span>2</span><strong>Control</strong><p>State machines, duty windows, hysteresis, event locks.</p></div>
+          <div><span>3</span><strong>Log</strong><p>CSV rows and event markers saved on SD card.</p></div>
+          <div><span>4</span><strong>Predict</strong><p>ETA, drift, calibration health, and batch outcomes.</p></div>
+        </div>
+      </section>
+
+      <section id="resume" class="resume-band">
+        <h2>Recruiter Signals</h2>
+        <div class="signal-grid">
+          <article>
+            <h3>Embedded Systems</h3>
+            <p>Teensy 4.1 firmware, Arduino framework, serial HMI integration, relay control, sensor conversion.</p>
+          </article>
+          <article>
+            <h3>Industrial Thinking</h3>
+            <p>Process stages, calibration workflows, operator prompts, event logging, fault-aware display states.</p>
+          </article>
+          <article>
+            <h3>Data Engineering</h3>
+            <p>Structured CSV logs with setup metadata, runtime telemetry, events, and fermentation records.</p>
+          </article>
+          <article>
+            <h3>AI Modeling</h3>
+            <p>Forecast targets are already present: time to strike, boil confirmation, cooling ETA, and temp stability.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
