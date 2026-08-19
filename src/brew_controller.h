@@ -10,10 +10,18 @@
 
 #define nexSerial Serial1
 
+#ifndef FIRMWARE_GIT_COMMIT
+#define FIRMWARE_GIT_COMMIT "unknown"
+#endif
+
 inline constexpr float RREF = 430.0f;
 inline constexpr float RNOMINAL = 100.0f;
 inline constexpr uint8_t HEATER_RELAY_PIN = 4;
 inline constexpr uint8_t LEVEL_PRESSURE_SENSOR_PIN = 14;
+
+inline constexpr char PROCESS_LOG_SCHEMA_VERSION[] = "process-v3";
+inline constexpr char FERMENTATION_LOG_SCHEMA_VERSION[] = "fermentation-v2";
+inline constexpr char MASH_CONTROLLER_VERSION[] = "biased-p-time-proportional-v1";
 
 inline constexpr int SD_CHIP_SELECT = BUILTIN_SDCARD;
 
@@ -46,6 +54,7 @@ inline constexpr float MASH_HOLD_GAIN_PCT_PER_C = 35.0f;
 inline constexpr float MASH_HOLD_MAX_DUTY_PCT = 80.0f;
 inline constexpr float MASH_HOLD_FORCE_ON_BELOW_C = 1.25f;
 inline constexpr float MASH_HOLD_FORCE_OFF_ABOVE_C = 0.25f;
+inline constexpr unsigned long MASH_LOG_INTERVAL_MS = 1000;
 inline constexpr unsigned long MASH_CAPTURE_STABILIZE_TIME_MS = 10000;
 
 inline constexpr uint8_t LEVEL_ADC_BITS = 12;

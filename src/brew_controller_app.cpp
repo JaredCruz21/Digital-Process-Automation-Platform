@@ -606,7 +606,7 @@ void loopController() {
       processMashVolumeCapture();
     }
 
-    if (millis() - lastMashLog >= 5000) {
+    if (millis() - lastMashLog >= MASH_LOG_INTERVAL_MS) {
       lastMashLog = millis();
       appendRunLogLine(
         "MASH",

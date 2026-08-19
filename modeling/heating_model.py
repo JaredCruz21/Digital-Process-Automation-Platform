@@ -84,7 +84,7 @@ def extract_heating_segment(run: BrewRun) -> HeatingSegment | None:
         target_c = float(setpoints.median()) if not setpoints.empty else float(samples["temp_c"].iloc[-1])
 
     flags: list[str] = []
-    if run.schema_version != "process-v2":
+    if run.schema_version not in {"process-v2", "process-v3"}:
         flags.append("legacy_schema")
     if len(samples) < 8:
         flags.append("too_few_samples")

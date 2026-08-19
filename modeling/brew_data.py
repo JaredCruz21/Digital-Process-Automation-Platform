@@ -171,7 +171,7 @@ def parse_run_file(path: str | Path) -> BrewRun:
         records.append(record)
 
     raw = pd.DataFrame.from_records(records, columns=[*columns, "source_row"])
-    schema_version = _detect_schema(columns)
+    schema_version = metadata.get("schema_version", "").strip() or _detect_schema(columns)
 
     if raw.empty:
         event_mask = pd.Series(dtype=bool)

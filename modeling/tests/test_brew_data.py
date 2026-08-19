@@ -49,6 +49,31 @@ class BrewDataTests(unittest.TestCase):
         self.assertEqual(run.events["event_name"].tolist(), ["MASH_START", "STRIKE_REACHED"])
         self.assertEqual(run.events.iloc[1]["event_detail"], "67.00")
 
+    def test_declared_schema_and_firmware_version_are_preserved(self) -> None:
+        path = self._write_fixture(
+            "\n".join(
+                [
+                    "[SETUP]",
+                    "schema_version,process-v3",
+                    "firmware_commit,abc123-dirty",
+                    "mash_controller_version,biased-p-time-proportional-v1",
+                    "run_name,versioned_fixture",
+                    "",
+                    "[DATA]",
+                    PROCESS_HEADER,
+                    "1,MASH,MASH HOLD,65,65,3,3,0.8,1,0,60,0,123,0",
+                ]
+            )
+        )
+
+        run = parse_run_file(path)
+
+        self.assertEqual(run.schema_version, "process-v3")
+        self.assertEqual(run.metadata["firmware_commit"], "abc123-dirty")
+        self.assertEqual(
+            run.metadata["mash_controller_version"], "biased-p-time-proportional-v1"
+        )
+
     def test_fermentation_event_columns_are_normalized(self) -> None:
         path = self._write_fixture(
             "\n".join(
@@ -93,6 +118,7 @@ class BrewDataTests(unittest.TestCase):
             "\n".join(
                 [
                     "[SETUP]",
+                    "schema_version,process-v3",
                     "run_name,heat_fixture",
                     "process_temp_cal_R2,138.50",
                     "",

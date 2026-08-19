@@ -5,6 +5,7 @@ Hands-on automation project for a Teensy 4.1 process controller that models, con
 Read the [project overview](docs/project-overview.md) for the complete goal, current progress, and development roadmap.
 See the [modeling software evaluation](docs/modeling-software-evaluation.md) for the recommended simulation, data, and visualization tools.
 Record physical equipment, process assumptions, HMI behavior, and model requirements in the [system specifications](docs/system-specifications.md).
+Resume development from the ordered [project checklist](docs/next-steps.md).
 
 ## What This Project Shows
 

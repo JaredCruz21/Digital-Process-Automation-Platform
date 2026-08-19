@@ -408,6 +408,18 @@ bool createRunFileWithSetup() {
     runLogActive = true;
 
     logFile.println("[SETUP]");
+    logFile.print("schema_version,"); logFile.println(PROCESS_LOG_SCHEMA_VERSION);
+    logFile.print("firmware_commit,"); logFile.println(FIRMWARE_GIT_COMMIT);
+    logFile.print("firmware_built_at,"); logFile.print(__DATE__); logFile.print(" "); logFile.println(__TIME__);
+    logFile.print("mash_controller_version,"); logFile.println(MASH_CONTROLLER_VERSION);
+    logFile.print("mash_log_interval_ms,"); logFile.println(MASH_LOG_INTERVAL_MS);
+    logFile.print("mash_hold_control_window_ms,"); logFile.println(MASH_HOLD_CONTROL_WINDOW_MS);
+    logFile.print("mash_hold_min_switch_ms,"); logFile.println(MASH_HOLD_MIN_SWITCH_MS);
+    logFile.print("mash_hold_base_duty_pct,"); logFile.println(MASH_HOLD_BASE_DUTY_PCT, 1);
+    logFile.print("mash_hold_gain_pct_per_c,"); logFile.println(MASH_HOLD_GAIN_PCT_PER_C, 1);
+    logFile.print("mash_hold_max_duty_pct,"); logFile.println(MASH_HOLD_MAX_DUTY_PCT, 1);
+    logFile.print("mash_hold_force_on_below_c,"); logFile.println(MASH_HOLD_FORCE_ON_BELOW_C, 2);
+    logFile.print("mash_hold_force_off_above_c,"); logFile.println(MASH_HOLD_FORCE_OFF_ABOVE_C, 2);
     logFile.print("run_name,"); logFile.println(runName);
     logFile.print("file_name,"); logFile.println(currentLogFileName);
     logFile.print("log_started_local_pacific,"); logFile.println(formatPacificTimestamp(Teensy3Clock.get()));
@@ -538,6 +550,9 @@ bool createFermentationLogFile(const String &requestedName, bool &hadToRename) {
 
   if (f.size() == 0) {
     f.println("[FERMENTATION]");
+    f.print("schema_version,"); f.println(FERMENTATION_LOG_SCHEMA_VERSION);
+    f.print("firmware_commit,"); f.println(FIRMWARE_GIT_COMMIT);
+    f.print("firmware_built_at,"); f.print(__DATE__); f.print(" "); f.println(__TIME__);
     f.print("run_name,"); f.println(requestedName);
     f.print("file_name,"); f.println(fermentationLogFileName);
     f.print("log_created_local_pacific,"); f.println(formatPacificTimestamp(Teensy3Clock.get()));
